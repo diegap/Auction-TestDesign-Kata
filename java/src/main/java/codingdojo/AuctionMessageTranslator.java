@@ -13,7 +13,7 @@ public class AuctionMessageTranslator {
     public void processMessage(String message) {
 
         if (message.contains("CLOSE")) {
-            // bug: should notify listener
+            listener.closeAuction();
         } else if (message.contains("PRICE")) {
             var data = new HashMap<String, String>();
             for (var element : message.split(";")) {
@@ -24,9 +24,9 @@ public class AuctionMessageTranslator {
             var increment = Integer.parseInt(data.get("Increment"));
             var bidder = data.get("Bidder");
 
-            // bug: should notify listener
+            listener.incrementPrice(bidder, currentPrice, increment);
         } else {
-            // bug: should notify listener
+            listener.closeNoSaleAuction();
         }
     }
 }

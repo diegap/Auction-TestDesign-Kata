@@ -1,5 +1,9 @@
 package codingdojo;
 
 public interface AuctionEventListener {
-    // TODO: add methods here
+    void closeAuction();
+
+    void incrementPrice(String bidder, int currentPrice, int increment);
+
+    void closeNoSaleAuction();
 }
